@@ -1,6 +1,6 @@
 import React from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Col, Container, Form, FormFeedback, FormGroup, FormText, Input, Label, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Modal, ModalBody, ModalFooter, ModalHeader, Row } from "reactstrap";
+import { Alert, Button, Col, Container, Form, FormFeedback, FormGroup, FormText, Input, Label, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Modal, ModalBody, ModalFooter, ModalHeader, Row, UncontrolledAlert } from "reactstrap";
 import ModalProject from "../../src/Modal";
 import busca from "../../src/I.A";
 import ElementListProduct from "../../src/components/ElementListProducks";
@@ -18,7 +18,8 @@ export default class Dashboard extends React.Component{
             distancia: 0,
             iteracoes: 343
         },
-        listaDeProdutos: []
+        listaDeProdutos: [],
+        alert: true
     }
 
     isNumber(n) {
@@ -93,15 +94,32 @@ export default class Dashboard extends React.Component{
                         <Button
                             color="primary"
                             onClick={async ()=>{
-                                const valor = await busca(this.state.valorDesejado,this.preecheLista)
-                                this.setState({data:valor})
-                                this.setState({modalVisible:true})
+                                if(!this.state.inputValorDesejadoIndocrreto){
+                                    const valor = await busca(this.state.valorDesejado,this.preecheLista)
+                                    this.setState({data:valor})
+                                    this.setState({modalVisible:true})
+                                    this.setState({alert:true})
+                                }else{
+                                    this.setState({alert:false})
+                                }
                             }}
                         >
                             Encontrar combinação mais próxima
                         </Button>
                     </div>
                     </FormGroup>
+                    <div>
+                    <Alert
+                        toggle={()=>{this.setState({alert:true})}}
+                        color="danger" 
+                        hidden={this.state.alert}
+                    >
+                        <h4 className="alert-heading">
+                            Erro!!!
+                        </h4>
+                        <p> O valor cujo o qual você buscou não é conisderado numérico. Poro favor digite um valor numérico.</p>
+                    </Alert>
+                </div>
                     <ListGroup>
                         {this.state.listaDeProdutos.map((produto)=>{
                             console.log(produto)
