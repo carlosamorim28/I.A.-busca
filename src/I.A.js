@@ -28,7 +28,6 @@ const verificaLista = (listaProdutos = [], iteractionFunction= ()=>{}, resultado
 const validacao = (resultado,objetivo) => {
     return Math.abs(resultado.resultado.soma - objetivo)
 }
-
 const busca = async (valorObjetivo,preecheLista) => {
     let iteraçoes = 0
     let resultado = {soma: 0,produto:1}
