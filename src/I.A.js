@@ -53,8 +53,6 @@ const busca = async (valorObjetivo,preecheLista) => {
 
     }
     resposta = {...resposta, distancia: estadoAtual, iteracoes: iteraçoes}
-    console.log("-------------------------------------------")
-//    console.log(resposta)
     return resposta
     
 }
