@@ -10,7 +10,7 @@ const iteractionFunction = (produto,resultado,listaProdutosEsculhidos, listaVeri
     if (produto.decisao){
         resultado.soma = resultado.soma + produto.valor
         resultado.produto = resultado.produto * produto.valor
-        listaProdutosEsculhidos.push()
+        listaProdutosEsculhidos.push()produto
     }
     
     return {resultado,listaProdutosEsculhidos}
